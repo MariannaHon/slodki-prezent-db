@@ -2,18 +2,16 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 
-// import path from 'path';
+import path from 'path';
 
 import cookieParser from 'cookie-parser';
 
-// import { env } from './utils/env.js';
-// import router from './routers/index.js';
+import { env } from './utils/env.js';
+import router from './routers/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
-// const PORT = Number(env('PORT', '3090'));
-
-const PORT = "3090";
+const PORT = Number(env('PORT', '3090'));
 
 export const setupServer = () => {
   const app = express();
@@ -46,11 +44,11 @@ export const setupServer = () => {
     });
   });
 
-//   app.use(router);
+  app.use(router);
   app.use(notFoundHandler);
   app.use(errorHandler);
 
-//   app.use(express.static(path.resolve('src', 'uploads')));
+  app.use(express.static(path.resolve('src', 'uploads')));
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -73,22 +73,32 @@ export const deletePresentController = async (req, res, next) => {
 };
 
 export const patchPhotoController = async (req, res, next) => {
-  const { recordId } = req.params;
-  const img = req.file;
+const { recordId } = req.params;
+    
+    const { photo, photo2, photo3, photo4 } = req.files || {};
+    console.log('BODY:', req.body);
+    console.log('FILES:', req.files);
 
-  if (!img) {
+  if (!photo && !photo2 && !photo3 && !photo4) {
     return next(createHttpError(400, 'No image file uploaded'));
   }
 
-  let photoUrl;
+  const uploadedPhotos = {};
 
-  if (env('ENABLE_CLOUDINARY') === 'true') {
-    photoUrl = await saveFileToCloudinary(img);
-  } else {
-    photoUrl = await saveFileToUploadDir(img);
-  }
+  const uploadHandler = async (file) => {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      return await saveFileToCloudinary(file);
+    } else {
+      return await saveFileToUploadDir(file);
+    }
+  };
 
-  const result = await patchPhoto(recordId, { photo: photoUrl });
+  if (photo) uploadedPhotos.photo = await uploadHandler(photo[0]);
+  if (photo2) uploadedPhotos.photo2 = await uploadHandler(photo2[0]);
+  if (photo3) uploadedPhotos.photo3 = await uploadHandler(photo3[0]);
+  if (photo4) uploadedPhotos.photo4 = await uploadHandler(photo4[0]);
+
+  const result = await patchPhoto(recordId, uploadedPhotos);
 
   if (!result) {
     return next(createHttpError(404, 'Present not found'));
@@ -96,7 +106,7 @@ export const patchPhotoController = async (req, res, next) => {
 
   res.status(200).json({
     status: 200,
-    message: 'Successfully updated product photo!',
+    message: 'Successfully updated product photos!',
     data: result,
   });
 };

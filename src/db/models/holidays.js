@@ -12,7 +12,7 @@ const holidaySchema = new Schema(
       required: true,
       trim: true,
     },
-    img: {
+    photo: {
       type: String,
       default: null,
     }

@@ -38,3 +38,9 @@ export const deleteBlog = async (recordId) => {
     const record = await BlogCollection.findOneAndDelete({ _id: recordId });
     return record;
 };
+
+export const patchPhoto = async (recordId, updateData) => {
+  return BlogCollection.findOneAndUpdate({ _id: recordId }, updateData, {
+    new: true,
+  });
+};

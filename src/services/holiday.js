@@ -33,3 +33,10 @@ export const deleteHoliday = async (recordId) => {
     const record = await HolidayCollection.findOneAndDelete({ _id: recordId });
     return record;
 };
+
+export const patchPhoto = async (recordId, updateData) => {
+  return HolidayCollection.findOneAndUpdate({ _id: recordId }, updateData, {
+    new: true,
+  });
+};
+

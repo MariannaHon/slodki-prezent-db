@@ -1,7 +1,7 @@
-import { getAllRecords, getRecordById, createRecord, patchRecord, deleteBlog } from "../services/blog.js";
-// import { env } from '../utils/env.js';
-// import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
-// import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
+import { getAllRecords, getRecordById, createRecord, patchRecord, deleteBlog, patchPhoto } from "../services/blog.js";
+import { env } from '../utils/env.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 
 import createHttpError from 'http-errors';
 
@@ -70,4 +70,38 @@ export const deleteBlogController = async (req, res, next) => {
     }
 
     res.status(204).send();
+};
+
+
+export const patchPhotoController = async (req, res, next) => {
+  try {
+    const { recordId } = req.params;
+    const file = req.file;
+
+    if (!file) {
+      return next(createHttpError(400, 'No image file uploaded'));
+    }
+
+    let photo;
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photo = await saveFileToCloudinary(file);
+    } else {
+      photo = await saveFileToUploadDir(file);
+    }
+
+    const result = await patchPhoto(recordId, { photo: photo });
+
+    if (!result) {
+      return next(createHttpError(404, 'Article not found'));
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: 'Successfully patched a photo!',
+      data: result,
+    });
+  } catch (error) {
+      next(createHttpError(500, 'Something went wrong'));
+      console.log(error);
+  }
 };

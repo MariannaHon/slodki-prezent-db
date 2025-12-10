@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Mikołajki",
+        "description": "Słodkie niespodzianki na 6 grudnia.",
+        "img": ""
+    },
+    {
+        "name": "Boże Narodzenie",
+        "description": "Elegańckie prezenty świąteczne dla każdego.",
+        "img": ""
+    },
+    {
+        "name": "Sylwester",
+        "description": "Stylowe upominki na powitanie Nowego Roku.",
+        "img": ""
+    },
+    {
+        "name": "Walentynki",
+        "description": "Słodkie zestawy dla zakochanych.",
+        "img": ""
+    },
+    {
+        "name": "Dzień Kobiet",
+        "description": "Wyjątkowe boksy pełne delikatności.",
+        "img": ""
+    },
+    {
+        "name": "Dzień Mężczyzn",
+        "description": "Praktyczne i słodkie upominki dla niego.",
+        "img": ""
+    },
+    {
+        "name": "Wielkanoc",
+        "description": "Kolorowe prezenty wielkanocne z tradycyjnymi smakami",
+        "img": ""
+    },
+    {
+        "name": "Halloween",
+        "description": "Strasznie słodkie prezenty na Halloween",
+        "img": ""
+    }
+]

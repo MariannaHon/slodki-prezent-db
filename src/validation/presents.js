@@ -28,6 +28,16 @@ export const createPresentSchema = Joi.object({
   new: Joi.boolean().required().messages(addPresentsErrorMessages),
   discount: Joi.boolean().required().messages(addPresentsErrorMessages),
   bestseller: Joi.boolean().required().messages(addPresentsErrorMessages),
+  dlaKogo: Joi.array().items(Joi.string().valid('child', 'firm', 'forHim', 'forHer')).required().messages(addPresentsErrorMessages),
+  swieta: Joi.array().items(Joi.string().valid('christmas',
+    'womensDay',
+    'menDay',
+    'halloween',
+    'boxes',
+    'mikolajki',
+    'sylwester',
+    'walentynki',
+    'easter')).required().messages(addPresentsErrorMessages),
 });
 
 export const updatePresentSchema = Joi.object({
@@ -49,4 +59,14 @@ export const updatePresentSchema = Joi.object({
   new: Joi.boolean(),
   discount: Joi.boolean(),
   bestseller: Joi.boolean(),
+  dlaKogo: Joi.array().items(Joi.string().valid('child', 'firm', 'forHim', 'forHer')),
+  swieta: Joi.array().items(Joi.string().valid('christmas',
+    'womensDay',
+    'menDay',
+    'halloween',
+    'boxes',
+    'mikolajki',
+    'sylwester',
+    'walentynki',
+    'easter'))
 });

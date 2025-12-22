@@ -4,7 +4,7 @@ export const FILTERS = {
     'christmas',
     'womensDay',
     'menDay',
-    'Halloween',
+    'halloween',
     'boxes',
     'mikolajki',
     'sylwester',
@@ -19,3 +19,4 @@ export const FILTERS = {
     { label: '300zl — 500zl', min: 300, max: 500 },
   ]
 };
+

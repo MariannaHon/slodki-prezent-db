@@ -52,6 +52,28 @@ const presentsSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    dlaKogo: {
+      type: [String],
+      enum: ['child', 'firm', 'forHim', 'forHer'],
+      required: true,
+      trim: true,
+    },
+    swieta: {
+      type: [String],
+      enum: [
+        'christmas',
+        'womensDay',
+        'menDay',
+        'Halloween',
+        'boxes',
+        'mikolajki',
+        'sylwester',
+        'walentynki',
+        'easter'
+      ],
+      required: true,
+      trim: true,
+    },
   },
   {
     timestamps: true,

@@ -3,21 +3,35 @@ import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
 export const getAllRecords = async ({
   page = 1,
-  perPage = 10,
+    perPage = 10,
+    filter = {},
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const presentsQuery = PresentsCollection.find();
+    const presentsQuery = PresentsCollection.find();
 
-  const presentsCount = await PresentsCollection.find()
-    .merge(presentsQuery)
-    .countDocuments();
+  if (filter.dlaKogo) {
+    presentsQuery.where('dlaKogo').equals(filter.dlaKogo);
+  }
 
-  const presents = await presentsQuery
-    .skip(skip)
-    .limit(limit)
-    .exec();
+  if (filter.swieta) {
+    presentsQuery.where('swieta').equals(filter.swieta);
+  }
+
+  if (filter.price) {
+    if (filter.price.$gte) {
+      presentsQuery.where('price').gte(filter.price.$gte);
+    }
+    if (filter.price.$lte) {
+      presentsQuery.where('price').lte(filter.price.$lte);
+    }
+  }
+
+  const [presentsCount, presents] = await Promise.all([
+    PresentsCollection.find().merge(presentsQuery).countDocuments(),
+    presentsQuery.skip(skip).limit(limit).exec(),
+  ]);
 
   const paginationData = calculatePaginationData(presentsCount, perPage, page);
 

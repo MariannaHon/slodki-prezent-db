@@ -4,16 +4,19 @@ import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 
 import { parsePaginationParams } from "../utils/parsePaginationParams.js";
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 import createHttpError from 'http-errors';
 
 export const getPresentsController = async (req, res) => {
 
   const { page, perPage } = parsePaginationParams(req.query);
+  const filter = parseFilterParams(req.query);
 
   const presents = await getAllRecords({
       page,
       perPage,
+      filter
     });
     res.json({
         status: 200,

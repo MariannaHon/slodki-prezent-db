@@ -3,11 +3,18 @@ import { env } from '../utils/env.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 
+import { parsePaginationParams } from "../utils/parsePaginationParams.js";
+
 import createHttpError from 'http-errors';
 
 export const getPresentsController = async (req, res) => {
 
-    const presents = await getAllRecords();
+  const { page, perPage } = parsePaginationParams(req.query);
+
+  const presents = await getAllRecords({
+      page,
+      perPage,
+    });
     res.json({
         status: 200,
         message: "Successfully found presents records!",

@@ -24,7 +24,7 @@ export const setupServer = () => {
   );
 
   app.use(cors({
-    origin: ['http://localhost:3000', 'https://slodki-prezent-shop.vercel.app/',],
+    origin: ['http://localhost:3000', 'https://slodki-prezent-shop.vercel.app/', 'https://slodki-prezent-shop.vercel.app', 'https://slodki-prezent-shop.vercel.app/presents', 'https://slodki-prezent-shop.vercel.app/holidays', 'https://slodki-prezent-shop.vercel.app/blog'],
     credentials: true,
   }));
   

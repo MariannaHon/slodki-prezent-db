@@ -1,9 +1,30 @@
 import { PresentsCollection } from '../db/models/presents.js';
+import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
-export const getAllRecords = async () => {
+export const getAllRecords = async ({
+  page = 1,
+  perPage = 10,
+}) => {
+  const limit = perPage;
+  const skip = (page - 1) * perPage;
 
-    const records = await PresentsCollection.find();
-    return records;
+  const presentsQuery = PresentsCollection.find();
+
+  const presentsCount = await PresentsCollection.find()
+    .merge(presentsQuery)
+    .countDocuments();
+
+  const presents = await presentsQuery
+    .skip(skip)
+    .limit(limit)
+    .exec();
+
+  const paginationData = calculatePaginationData(presentsCount, perPage, page);
+
+  return {
+    data: presents,
+    ...paginationData,
+  };
 };
 
 export const getRecordById = async (presentId) => {

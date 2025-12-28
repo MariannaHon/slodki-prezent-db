@@ -10,6 +10,15 @@ export const CLOUDINARY = {
   API_SECRET: 'API_SECRET',
 };
 
+export const SMTP = {
+  SMTP_HOST: 'SMTP_HOST',
+  SMTP_PORT: 'SMTP_PORT',
+  SMTP_USER: 'SMTP_USER',
+  SMTP_PASSWORD: 'SMTP_PASSWORD',
+  SMTP_FROM: 'SMTP_FROM',
+  SMTP_MAIL: 'SMTP_MAIL',
+};
+
 // export const SWAGGER_PATH = path.resolve('docs', 'swagger.json');
 
 

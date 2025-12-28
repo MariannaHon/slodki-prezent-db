@@ -29,9 +29,10 @@ export const getAllRecords = async ({
   }
 
   const [presentsCount, presents] = await Promise.all([
-    PresentsCollection.find().merge(presentsQuery).countDocuments(),
+    PresentsCollection.countDocuments(presentsQuery.getQuery()),
     presentsQuery.skip(skip).limit(limit).exec(),
-  ]);
+]);
+
 
   const paginationData = calculatePaginationData(presentsCount, perPage, page);
 

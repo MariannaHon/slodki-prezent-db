@@ -19,6 +19,14 @@ export const SMTP = {
   SMTP_MAIL: 'SMTP_MAIL',
 };
 
+export const BREVO = {
+  BREVO_API_KEY: 'BREVO_API_KEY',
+  BREVO_SENDER_EMAIL: 'BREVO_SENDER_EMAIL',
+  BREVO_SENDER_NAME: 'BREVO_SENDER_NAME',
+  BREVO_RECEIVER_EMAIL: 'BREVO_RECEIVER_EMAIL',
+};
+
+
 // export const SWAGGER_PATH = path.resolve('docs', 'swagger.json');
 
 

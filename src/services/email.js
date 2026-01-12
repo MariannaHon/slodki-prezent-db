@@ -1,22 +1,3 @@
-// import nodemailer from 'nodemailer';
-// import { env } from '../utils/env.js';
-// import { SMTP } from '../constants/index.js';
-
-// const transporter = nodemailer.createTransport({
-//   host: env(SMTP.SMTP_HOST),
-//   port: Number(env(SMTP.SMTP_PORT)),
-//   secure: false,
-//   auth: {
-//     user: env(SMTP.SMTP_USER),
-//     pass: env(SMTP.SMTP_PASSWORD),
-//   },
-// });
-
-
-// export const sendEmail = async ({ from, to, subject, text, html }) => {
-//   return await transporter.sendMail({ from, to, subject, text, html });
-// };
-
 
 import fetch from 'node-fetch';
 import { env } from '../utils/env.js';

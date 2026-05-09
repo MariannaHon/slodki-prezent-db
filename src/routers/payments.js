@@ -1,16 +1,10 @@
 import { Router } from "express";
-import { ctrlWrapper } from "../utils/ctrlWrapper.js";
-import { createCheckoutSessionController, stripeWebhookController } from "../controllers/payments.js";
+
+import { createCheckoutSessionController,  } from "../controllers/payments.js";
 
 const router = Router();
 
-router.post("/create-session", ctrlWrapper(createCheckoutSessionController));
 
-router.post("/webhook", ctrlWrapper(stripeWebhookController));
-
+router.post("/", createCheckoutSessionController);
 
 export default router;
-
-
-
-

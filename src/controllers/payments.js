@@ -4,9 +4,10 @@ import { createCheckoutSession } from "../services/payments.js";
 
 export const createCheckoutSessionController = async (req, res) => {
   try {
-    const { products } = req.body;
 
-    const session = await createCheckoutSession(products);
+    const { products, customer } = req.body;
+
+    const session = await createCheckoutSession(products, customer);
 
     res.json({
       url: session.url,
@@ -17,3 +18,4 @@ export const createCheckoutSessionController = async (req, res) => {
     });
   }
 };
+

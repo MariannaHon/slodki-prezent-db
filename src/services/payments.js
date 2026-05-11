@@ -4,7 +4,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const createCheckoutSession = async (products) => {
+export const createCheckoutSession = async (products, customer) => {
   const line_items = products.map((item) => ({
     price_data: {
       currency: "pln",
@@ -26,9 +26,16 @@ export const createCheckoutSession = async (products) => {
 
     mode: "payment",
 
-    success_url: `${process.env.APP_DOMAIN}/thanks`,
+    success_url: `${process.env.APP_DOMAIN}/thanks?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.APP_DOMAIN}/cancel`,
+    customer_email: customer.email,
+
+    metadata: {
+      email: customer.email,
+      name: customer.name,
+    },
   });
 
   return session;
 };
+

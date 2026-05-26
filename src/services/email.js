@@ -24,7 +24,7 @@ export const sendEmail = async ({ subject, html }) => {
     }),
   });
 
-  const text = await res.text(); // ⬅️ ВАЖЛИВО
+  const text = await res.text(); 
 
   if (!res.ok) {
     console.error('BREVO ERROR RESPONSE:', text);

@@ -5,6 +5,7 @@ import holidayRouter from './holiday.js';
 import contactRouter from './email.js';
 import checkoutRouter from './payments.js';
 import sessionRouter from './session.js';
+import newsletterRouter from './newsletter.js';
 
 // import { swaggerDocs } from '../middlewares/swaggerDocs.js';
 
@@ -16,6 +17,7 @@ router.use('/holiday', holidayRouter);
 router.use('/contact', contactRouter);
 router.use('/checkout', checkoutRouter);
 router.use('/session', sessionRouter);
+router.use('/newsletter', newsletterRouter);
 // router.use('/api-docs', swaggerDocs());
 
 export default router;

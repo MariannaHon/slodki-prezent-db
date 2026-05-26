@@ -35,6 +35,12 @@ const blogSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    type: {
+      type: [String],
+      enum: ['all', 'events', 'advices', 'inspirations', 'insites'],
+      required: true,
+      trim: true,
     }
   },
   {

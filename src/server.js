@@ -10,11 +10,18 @@ import { env } from './utils/env.js';
 import router from './routers/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { stripeWebhookController } from './controllers/payments.js';
 
 const PORT = Number(env('PORT', '3090'));
 
 export const setupServer = () => {
   const app = express();
+
+  app.post(
+    '/payments/webhook',
+    express.raw({ type: 'application/json' }),
+    stripeWebhookController
+  );
 
   app.use(
     express.json({

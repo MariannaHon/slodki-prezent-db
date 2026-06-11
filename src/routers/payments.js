@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { createCheckoutSessionController,  } from "../controllers/payments.js";
+import { createCheckoutSessionController } from "../controllers/payments.js";
 
 const router = Router();
 

@@ -4,6 +4,7 @@ const orderSchema = new Schema(
   {
     items: [
       {
+        productId: String,
         name: String,
         quantity: Number,
         price: Number,
@@ -11,7 +12,16 @@ const orderSchema = new Schema(
         photo: String,
       },
     ],
-    totalAmount: Number,
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
+    customer: {
+      name: String,
+      email: String,
+      phone: String,
+      address: String,
+    },
     email: String,
     status: {
       type: String,
@@ -27,3 +37,4 @@ const orderSchema = new Schema(
 );
 
 export const OrdersCollection = model('orders', orderSchema);
+
